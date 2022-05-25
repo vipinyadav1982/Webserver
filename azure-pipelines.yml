@@ -15,3 +15,16 @@ steps:
     rootFolderOrFile: '$(build.sourcesDirectory)'
     includeRootFolder: false
 - task: PublishBuildArtifacts@1
+jobs:
+- deployment: VMDeploy
+  displayName: Webserver
+  pool:
+    vmImage: 'ubuntu-latest'
+  environment:
+    name: DevEnv
+    resourceType: VirtualMachine
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - script: echo my first deployment
